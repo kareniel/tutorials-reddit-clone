@@ -4,7 +4,7 @@ module.exports = mainView
 
 function mainView () {
   return html`
-    <body>
-      hello world
-    </body>`
+    <main>
+      <a href="/submit">Submit a new link</a>
+    </main>`
 }

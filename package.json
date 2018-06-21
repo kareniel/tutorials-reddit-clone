@@ -5,7 +5,7 @@
   "description": "a minimal reddit clone",
   "main": "src/index.js",
   "scripts": {
-    "start": "budo src/index.js:bundle.js --dir public --live",
+    "start": "budo src/index.js:bundle.js --dir public --live --pushstate --port=8080",
     "test": "standard --fix"
   },
   "repository": {
