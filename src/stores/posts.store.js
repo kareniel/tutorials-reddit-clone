@@ -11,8 +11,11 @@ function posts (state, emitter) {
     emitter.on('posts:downvote', downvote)
   })
 
-  function submit () {
+  function submit (post) {
+    post.timestamp = Date.now()
 
+    state.posts.list.push(post)
+    emitter.emit(state.events.PUSHSTATE, '/')
   }
 
   function upvote () {

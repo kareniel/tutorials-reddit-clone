@@ -5,7 +5,7 @@ module.exports = submitView
 
 function submitView (state, emit, components) {
   return html`
-    <main>
+    <section>
       ${state.cache(SubmitForm, 'SubmitForm').render()}
-    </main>`
+    </section>`
 }

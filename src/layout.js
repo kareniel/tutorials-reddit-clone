@@ -7,10 +7,16 @@ function layout (view) {
     <body>
       <div class="container">
         <header>
-          <h1>reddit-clone</h1>
+          <h1><a href="/">reddit-clone</a></h1>
         </header>
-        
-        ${view(state, emit)}
+
+        <main>
+          ${view(state, emit)}
+
+          <aside>
+            <a href="/submit">Submit a new link</a>
+          </aside>
+        </main>
         
         <footer>
           You can find the code for this demo on 

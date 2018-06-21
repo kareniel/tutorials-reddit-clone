@@ -4,7 +4,7 @@ module.exports = commentsView
 
 function commentsView () {
   return html`
-    <main>
+    <section>
       
-    </main>`
+    </section>`
 }
