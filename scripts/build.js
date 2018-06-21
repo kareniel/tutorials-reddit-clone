@@ -1,14 +1,10 @@
-var fs = require('fs')
-var mkdirp = require('mkdirp')
-var cp = require('cp')
+var fse = require('fs-extra')
 var browserify = require('browserify')
 
-mkdirp.sync('dist')
-
-cp.sync('public/index.html', 'dist/index.html')
-cp.sync('public/style.css', 'dist/style.css')
+fse.mkdirpSync('dist')
+fse.copySync('public/', 'dist/')
 
 browserify()
   .add('src/index.js')
   .bundle()
-  .pipe(fs.createWriteStream('dist/bundle.js'))
+  .pipe(fse.createWriteStream('dist/bundle.js'))

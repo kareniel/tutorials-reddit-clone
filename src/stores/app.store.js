@@ -1,6 +1,6 @@
-module.exports = appStore
+module.exports = app
 
-function appStore (state, emitter) {
+function app (state, emitter) {
   emitter.on('DOMContentLoaded', function () {
 
   })
