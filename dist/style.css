@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box
+}
+
+body {
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+.container {
+  min-height: 99%;
+  position: relative;
+}
+
+header {
+  height: 6rem;
+}
+
+main {
+  height: 100%;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2rem;
+}
+
+header, main, footer {
+  padding: 1rem;
+}
+
+.debug * { outline: 1px solid gold; }
+.debug-white * { outline: 1px solid white; }
+.debug-black * { outline: 1px solid black; }
