@@ -5,7 +5,8 @@
   "description": "a minimal reddit clone",
   "main": "src/index.js",
   "scripts": {
-    "start": "budo src/index.js:bundle.js --dir public --live",
+    "start": "budo src/index.js:bundle.js --dir public --live --pushstate --port=8080",
+    "build": "node scripts/build",
     "test": "standard --fix"
   },
   "repository": {
@@ -25,6 +26,8 @@
   "homepage": "https://github.com/kareniel/tutorials-reddit-clone#readme",
   "devDependencies": {
     "budo": "^11.3.0",
+    "cp": "^0.2.0",
+    "mkdirp": "^0.5.1",
     "standard": "^11.0.1"
   },
   "dependencies": {
