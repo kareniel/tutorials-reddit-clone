@@ -1,0 +1,24 @@
+{
+  "name": "reddit-clone",
+  "version": "1.0.0",
+  "description": "a minimal reddit clone",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "standard --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kareniel/tutorials-reddit-clone.git"
+  },
+  "keywords": [
+    "reddit",
+    "clone",
+    "tutorial"
+  ],
+  "author": "kareniel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kareniel/tutorials-reddit-clone/issues"
+  },
+  "homepage": "https://github.com/kareniel/tutorials-reddit-clone#readme"
+}
