@@ -1,9 +1,11 @@
 {
   "name": "reddit-clone",
   "version": "1.0.0",
+  "private": true,
   "description": "a minimal reddit clone",
   "main": "src/index.js",
   "scripts": {
+    "start": "budo src/index.js:bundle.js --dir public --live",
     "test": "standard --fix"
   },
   "repository": {
@@ -20,5 +22,12 @@
   "bugs": {
     "url": "https://github.com/kareniel/tutorials-reddit-clone/issues"
   },
-  "homepage": "https://github.com/kareniel/tutorials-reddit-clone#readme"
+  "homepage": "https://github.com/kareniel/tutorials-reddit-clone#readme",
+  "devDependencies": {
+    "budo": "^11.3.0",
+    "standard": "^11.0.1"
+  },
+  "dependencies": {
+    "choo": "^6.12.1"
+  }
 }
