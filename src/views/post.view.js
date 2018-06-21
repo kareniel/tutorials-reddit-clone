@@ -10,7 +10,7 @@ function post (p) {
   return html`
     <article>
       <a href=${p.url}>${p.title}</a>
-      <p>submitted ${timeSince(p.timestamp)}</p>
+      <p class="muted">submitted ${timeSince(p.timestamp)}</p>
       <hr>
     </article>`
 }

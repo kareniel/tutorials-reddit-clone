@@ -14,15 +14,17 @@ function layout (view) {
           ${view(state, emit)}
 
           <aside>
-            <a href="/submit">Submit a new link</a>
+            <a class="button" href="/submit">Submit a new link</a>
           </aside>
         </main>
         
         <footer>
-          You can find the code for this demo on 
-          <a href="https://github.com/kareniel/tutorials-reddit-clone">
-            Github
-          </a>
+          <p>
+            You can find the code for this demo on 
+            <a href="https://github.com/kareniel/tutorials-reddit-clone">
+              Github
+            </a>
+          </p>
         </footer>
       </div>
     </body>`

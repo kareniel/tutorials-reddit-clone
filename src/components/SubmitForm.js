@@ -2,6 +2,8 @@ var Component = require('choo/component')
 var html = require('choo/html')
 var Model = require('../lib/Model')
 
+const PATTERN = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/ // eslint-disable-line
+
 module.exports = class SubmitForm extends Component {
   constructor (name, state, emit) {
     super()
@@ -9,12 +11,17 @@ module.exports = class SubmitForm extends Component {
     this.state = state
     this.emit = emit
 
+    this.disabled = true
     this.fields = {
-      url: new Model(),
-      title: new Model()
+      url: new Model(this),
+      title: new Model(this)
     }
 
     this.onSubmit = this.onSubmit.bind(this)
+  }
+
+  validURL (str) {
+    return str.match(PATTERN)
   }
 
   update () {
@@ -22,15 +29,29 @@ module.exports = class SubmitForm extends Component {
   }
 
   createElement () {
+    this.disabled = (
+      !this.fields.url.value ||
+      !this.validURL(this.fields.url.value) ||
+      !this.fields.title.value
+    )
+
     return html`
-      <form>
+      <form class="submit-form">
         <p>
-          <label>URL</label><input type="text" onkeyup=${this.fields.url.update}>
+          <label>URL</label><br>
+          <input type="url"
+            value=${this.fields.url.value} 
+            onkeyup=${this.fields.url.update}>
         </p>
         <p>
-          <label>Title</label><input type="text" onkeyup=${this.fields.title.update}>
+          <label>Title</label><br>
+          <input type="text" 
+            value=${this.fields.title.value} 
+            onkeyup=${this.fields.title.update}>
         </p>
-        <button onclick=${this.onSubmit}>Submit</button>
+        <button disabled=${this.disabled} class="button" onclick=${this.onSubmit}>
+          Submit
+        </button>
       </form>`
   }
 

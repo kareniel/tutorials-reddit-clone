@@ -1,39 +1,130 @@
+.debug * { outline: 1px solid gold; }
+.debug-white * { outline: 1px solid white; }
+.debug-black * { outline: 1px solid black; }
+
 * {
   box-sizing: border-box
 }
 
 body {
   margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  color: #343434;
 }
 
 html, body {
   height: 100%;
 }
 
-.container {
-  min-height: 99%;
-  position: relative;
+a {
+  color: #0E6DED;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 header {
+  background-color: #343434;
+  color: #EDF3FA;
   height: 6rem;
+}
+
+header a {
+  color: #EDF3FA;
+}
+
+header a:hover {
+  text-decoration: none;
+}
+
+footer a {
+  color: #59A0FF;
+}
+
+header h1 {
+  font-weight: 300;
+}
+
+header, footer {
+  background-color: #343434;
+  color: #EDF3FA;
 }
 
 main {
   height: 100%;
+  display: flex;
+}
+
+main > section {
+  flex: 1;
+}
+
+aside {
+  min-width: 40ex;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: #C4C4C4;
+  opacity: 0.3;
 }
 
 footer {
+  background-color: #343434;
+  color: #EDF3FA;
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 2rem;
 }
 
-header, main, footer {
+header, main, main > section, aside, footer {
   padding: 1rem;
 }
 
-.debug * { outline: 1px solid gold; }
-.debug-white * { outline: 1px solid white; }
-.debug-black * { outline: 1px solid black; }
+.button {
+  display: inline-block;
+  border: none;
+  background-color: #0E6DED;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.5rem 1.5rem;
+}
+
+.button:hover {
+  background-color: #0D60CE;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button:disabled {
+  background-color: #CCCC;
+}
+
+.button:disabled:hover {
+  cursor: not-allowed;
+}
+
+.container {
+  min-height: 100%;
+  position: relative;
+}
+
+.muted {
+  color: #959CA6;
+}
+
+.submit-form input {
+  width: 100%;
+  height: 1.5rem;
+  margin: 0.5rem 0;
+  padding: 1rem 0.5rem;
+  font-size: 1.5rem;
+  color: #343434;
+}
+
+.submit-form input:invalid {
+  border: 2px solid red;
+}
