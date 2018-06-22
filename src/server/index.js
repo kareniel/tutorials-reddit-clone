@@ -1,29 +1,63 @@
 var http = require('http')
-var fse = require('fs-extra')
-var pkg = require('../../package.json')
+var routes = require('./routes')
 
 const { PORT } = process.env
-const { name, version } = pkg
-const lastUpdatedOn = fse.statSync(__dirname).mtime
 
-const message = `
-${name} ${version}
-${formatDate(lastUpdatedOn)}`
-
-var server = http.createServer(handler)
+var server = http.createServer(handleRequest)
 
 server.listen(PORT, err => {
   if (err) return console.log('Uh oh.', '\n\n', err)
 
-  process.title = 'reddit-clone'
+  process.title = 'reddit-clone-server'
 
   console.log(process.title, `is listening at ${PORT}`)
 })
 
-function handler (req, res) {
-  res.end(message)
+function handleRequest (req, res) {
+  var { method, url } = req
+
+  getRouteHandler(method, url, handler => {
+    bodyParser(req, res, err => {
+      if (err) return
+
+      handler(req, res)
+    })
+  })
 }
 
-function formatDate (date) {
-  return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
+function getRouteHandler (method, url, callback) {
+  if (url === '/posts') {
+    if (method === 'POST') return callback(routes.posts.create)
+    if (method === 'GET') return callback(routes.posts.list)
+  }
+
+  callback(routes.default)
+}
+
+function bodyParser (req, res, next) {
+  if (req.headers['content-type'] !== 'application/json') return next()
+
+  var chunks = []
+
+  req.on('data', chunk => {
+    chunks.push(chunk)
+  })
+
+  req.on('end', () => {
+    var str = Buffer.concat(chunks).toString()
+
+    try {
+      req.body = JSON.parse(str)
+    } catch (err) {
+      res.writeHead(400, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
+        type: 'invalid_json',
+        message: 'JSON body could not be parsed.'
+      }))
+
+      return false
+    }
+
+    next()
+  })
 }

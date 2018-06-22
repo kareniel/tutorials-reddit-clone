@@ -16,5 +16,5 @@ budo('src/client:bundle.js', {
     transform: envify
   }
 }).on('connect', e => {
-  console.log('Client is listening on port', PORT)
+  console.log('reddit-clone-client is listening on port', PORT)
 })
