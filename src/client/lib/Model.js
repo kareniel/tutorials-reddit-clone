@@ -1,5 +1,5 @@
 var Component = require('choo/component')
-const NO_COMPONENT = 'Model expects a Component as first argument.'
+const NO_COMPONENT = 'Model constructor expects a Component as first argument.'
 
 module.exports = class Model {
   constructor (component, opts) {
@@ -18,5 +18,9 @@ module.exports = class Model {
     this.value = e.target.value
 
     this.component.rerender()
+  }
+
+  reset () {
+    this.value = ''
   }
 }

@@ -2,7 +2,7 @@ var Component = require('choo/component')
 var html = require('choo/html')
 var Model = require('../lib/Model')
 
-const PATTERN = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/ // eslint-disable-line
+const URL_REGEX = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/ // eslint-disable-line
 
 module.exports = class SubmitForm extends Component {
   constructor (name, state, emit) {
@@ -21,7 +21,7 @@ module.exports = class SubmitForm extends Component {
   }
 
   validURL (str) {
-    return str.match(PATTERN)
+    return str.match(URL_REGEX)
   }
 
   update () {
@@ -55,6 +55,12 @@ module.exports = class SubmitForm extends Component {
       </form>`
   }
 
+  clear () {
+    Object.keys(this.fields).forEach(key => {
+      this.fields[key].reset()
+    })
+  }
+
   onSubmit (e) {
     e.preventDefault()
 
@@ -62,5 +68,7 @@ module.exports = class SubmitForm extends Component {
       url: this.fields.url.value,
       title: this.fields.title.value
     })
+
+    this.clear()
   }
 }
